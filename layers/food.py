@@ -19,7 +19,7 @@ class FoodLayer(cocos.layer.Layer):
         while dir == 0:
             dir = random.randint(-1,1)
 
-        s.do(Repeat(RotateBy(360*dir, duration=random.randint(8,10))))
+        s.do(Repeat(RotateBy(360*dir, duration=random.randint(15,30))))
 
         s.id = "%d-%d" % (x,y)
 
