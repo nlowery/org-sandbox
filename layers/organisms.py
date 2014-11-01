@@ -1,7 +1,7 @@
 import cocos
 import settings
 import random
-from cocos.actions import *
+from cocos.actions import Repeat, RotateBy
 
 class OrganismsLayer(cocos.layer.Layer):
 
