@@ -1,3 +1,4 @@
+from cocos.actions import Repeat, RotateBy
 import cocos
 import settings
 
@@ -8,5 +9,6 @@ class BackgroundLayer(cocos.layer.Layer):
         s = cocos.sprite.Sprite('graphics/background.jpg')
         s.position = settings.SCREEN_WIDTH/2,settings.SCREEN_HEIGHT/2
         s.color = (100,100,100)
+        s.do(Repeat(RotateBy(360, duration=480)))
         self.add(s)
 
