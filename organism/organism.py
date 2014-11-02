@@ -70,8 +70,8 @@ class Organism:
 
         x,y = self.map_position()
         self.distance_from_food = 1000000
-        for i in range(0, Map.MAX_X):
-            for j in range(0, Map.MAX_Y):
+        for i in range(Map.MAX_X):
+            for j in range(Map.MAX_Y):
                 if Map.tiles[i][j] == Map.FOOD_TILE:
                     d = math.hypot(i-(x),j-(y+1))
                     if d < self.distance_from_food:

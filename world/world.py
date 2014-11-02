@@ -18,13 +18,13 @@ class Map:
         self.size_x = settings.SCREEN_WIDTH/self.TILE_SIZE
         self.size_y = settings.SCREEN_HEIGHT/self.TILE_SIZE
 
-        for i in range(0,self.size_x):
+        for i in range(self.size_x):
             cols = []
             for j in range(self.size_y):
                 cols.append(self.EMPTY_TILE)
             self.tiles.append(cols)
 
-        for i in range(0, settings.NUMBER_OF_FOOD_SOURCES):
+        for i in range(settings.NUMBER_OF_FOOD_SOURCES):
             self.new_food()
 
     def new_food(self,set_x=None,set_y=None):

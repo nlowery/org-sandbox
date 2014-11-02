@@ -3,6 +3,7 @@ from layers.organisms import OrganismsLayer
 from layers.food import FoodLayer
 from layers.background import BackgroundLayer
 from organism.organism import Organism
+from layers.console import ConsoleLayer
 from world.world import Map
 import settings
 import cocos
@@ -19,8 +20,6 @@ class Game(cocos.layer.Layer):
     map        = None
     organisms  = []
 
-    is_food_setup = False
-
     def __init__(self):
 
         cocos.director.director.init(width=settings.SCREEN_WIDTH,height=settings.SCREEN_HEIGHT,fullscreen=settings.FULL_SCREEN)
@@ -34,16 +33,24 @@ class Game(cocos.layer.Layer):
         self.add(self.org_layer, z=1)
         self.food_layer = FoodLayer()
         self.add(self.food_layer, z=0)
-        self.console = ConsoleLayer()
+        self.console = ConsoleLayer(self)
         self.add(self.console, z=100)
         self.main_scene = cocos.scene.Scene(self)
 
         self.schedule(self.setup)
 
+    def reset(self):
+        self.unschedule(self.update)
+        self.org_layer.remove_all()
+        self.food_layer.remove_all()
+        self.organisms = []
+        self.schedule(self.setup)
+
+
     def setup(self, dt):
 
         # create and add a new organism
-        self.organisms.append(Organism(id=time.time()*1000))
+        self.organisms.append(Organism(id=int(time.time()*1000)))
         self.org_layer.add_organism(self.organisms[-1])
 
         # if we've created enough organisms, move on from setup
@@ -52,7 +59,7 @@ class Game(cocos.layer.Layer):
             self.schedule(self.update)
 
     def update(self, dt):
-        for i in range(0, settings.STEPS_PER_FRAME):
+        for i in range(settings.STEPS_PER_FRAME):
             # process one frame of the game
 
             # tell each organism to do its thing
@@ -69,12 +76,13 @@ class Game(cocos.layer.Layer):
 
                 if org.reproduce_time <= 0 :
                     org.reproduce_time = settings.REPRODUCTION_TIME
-                    new_org = Organism(id=time.time()*1000,color=org.color)
-                    new_org.brain = org.brain
-                    new_org.pos_x = org.pos_x + random.randint(-20,20)
-                    new_org.pos_y = org.pos_y + random.randint(-20,20)
-                    self.organisms.append(new_org)
-                    self.org_layer.add_organism(new_org)
+                    if len(self.organisms) < settings.MAX_ORGANISMS or settings.MAX_ORGANISMS < 0:
+                        new_org = Organism(id=time.time()*1000,color=org.color)
+                        new_org.brain = org.brain
+                        new_org.pos_x = org.pos_x + random.randint(-20,20)
+                        new_org.pos_y = org.pos_y + random.randint(-20,20)
+                        self.organisms.append(new_org)
+                        self.org_layer.add_organism(new_org)
 
             self.food_layer.update_labels(Map.food_sources)
 

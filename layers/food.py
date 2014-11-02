@@ -31,6 +31,11 @@ class FoodLayer(cocos.layer.Layer):
         if settings.DRAW_LABELS:
             self.add(s.store_label)
 
+    def remove_all(self):
+        for os in self.org_sprites:
+            self.remove(os)
+        self.org_sprites = []
+
     def remove_food(self, id):
         for os in self.org_sprites:
             if os.id == id:

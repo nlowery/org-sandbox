@@ -42,6 +42,11 @@ class OrganismsLayer(cocos.layer.Layer):
             if o.id == org.id:
                 o.energy_label.element.text = str(org.energy)
 
+    def remove_all(self):
+        for org in self.org_sprites:
+            self.remove(org)
+        self.org_sprites = []
+
     def remove_sprite(self,id):
         for org in self.org_sprites:
             if org.id == id:
