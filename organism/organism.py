@@ -7,7 +7,7 @@ import random
 
 class Organism:
 
-    def __init__(self,id=0, color=None):
+    def __init__(self,id=0, color=None, game=None):
 
         self.id = id
         self.pos_x = random.randint(0, settings.SCREEN_WIDTH)
@@ -18,6 +18,7 @@ class Organism:
         self.distance_from_food = 0
         self.color = color or (random.randint(150,255),random.randint(150,255),random.randint(150,255))
 
+        self.game = game
         self.brain = Brain()
 
 
@@ -39,8 +40,8 @@ class Organism:
             self.pos_y = 0
 
     def map_position(self):
-        x = (int(self.pos_x)/Map.TILE_SIZE) % Map.MAX_X
-        y = (int(self.pos_y)/Map.TILE_SIZE) % Map.MAX_Y
+        x = (int(self.pos_x)/self.game.map.TILE_SIZE) % self.game.map.MAX_X
+        y = (int(self.pos_y)/self.game.map.TILE_SIZE) % self.game.map.MAX_Y
         return x, y
 
     def scan(self):
@@ -50,7 +51,7 @@ class Organism:
         vals = [0,0,0,0,0,0,0,0,0]
 
         x, y = self.map_position()
-        m = Map.tiles
+        m = self.game.map.tiles
 
         vals[0] = m[x][y]
         vals[1] = m[x-1][min(y+1,Map.size_y)]
@@ -70,9 +71,9 @@ class Organism:
 
         x,y = self.map_position()
         self.distance_from_food = 1000000
-        for i in range(Map.MAX_X):
-            for j in range(Map.MAX_Y):
-                if Map.tiles[i][j] == Map.FOOD_TILE:
+        for i in range(self.game.map.MAX_X):
+            for j in range(self.game.map.MAX_Y):
+                if self.game.map.tiles[i][j] == self.game.map.FOOD_TILE:
                     d = math.hypot(i-(x),j-(y+1))
                     if d < self.distance_from_food:
                         self.distance_from_food = d

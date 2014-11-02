@@ -42,6 +42,17 @@ class FoodLayer(cocos.layer.Layer):
                 self.remove(os)
                 self.org_sprites.remove(os)
 
+    def sync_with_map(self, sources):
+        # add any missing food sources
+        for f in sources:
+            found = False
+            for os in self.org_sprites:
+                if os.id == f["id"]:
+                    found = True
+            if not found:
+                self.add_food(f["x"],f["y"])
+        self.update_labels(sources)
+
 
     def update_labels(self,food_sources):
         for fs in food_sources:

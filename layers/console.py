@@ -13,7 +13,7 @@ class ConsoleCommands:
             'exit': self.cmd_quit,
             'info': self.cmd_info,
             'quit': self.cmd_quit,
-            'reset': self.cmd_reset
+            'reset': self.cmd_reset,
         }
 
     def cmd_clear(self, args):
@@ -23,6 +23,7 @@ class ConsoleCommands:
         ConsoleLayer().log('')
 
     def cmd_info(self, args):
+        ConsoleLayer().log('')
         ConsoleLayer().log('---------------------------------')
         ConsoleLayer().log('Organisms:    %d' % len(self.game.organisms))
         ConsoleLayer().log('Food Sources: %d' % len(self.game.food_layer.org_sprites))

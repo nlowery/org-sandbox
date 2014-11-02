@@ -32,6 +32,11 @@ class OrganismsLayer(cocos.layer.Layer):
         self.org_sprites.append(s)
         self.add(s)
 
+    def update_org(self, org):
+        self.update_position(org)
+        self.update_energy_label(org)
+
+
     def update_position(self, org):
         for o in self.org_sprites:
             if o.id == org.id:

@@ -18,6 +18,9 @@ class Map:
         self.size_x = settings.SCREEN_WIDTH/self.TILE_SIZE
         self.size_y = settings.SCREEN_HEIGHT/self.TILE_SIZE
 
+    def setup_food(self):
+        self.tiles = []
+        self.food_sources = []
         for i in range(self.size_x):
             cols = []
             for j in range(self.size_y):

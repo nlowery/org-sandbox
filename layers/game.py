@@ -50,8 +50,10 @@ class Game(cocos.layer.Layer):
     def setup(self, dt):
 
         # create and add a new organism
-        self.organisms.append(Organism(id=int(time.time()*1000)))
+        self.organisms.append(Organism(id=int(time.time()*1000),game=self))
         self.org_layer.add_organism(self.organisms[-1])
+
+        self.map.setup_food()
 
         # if we've created enough organisms, move on from setup
         if len(self.organisms) >= settings.NUMBER_OF_ORGANISMS:
@@ -60,13 +62,11 @@ class Game(cocos.layer.Layer):
 
     def update(self, dt):
         for i in range(settings.STEPS_PER_FRAME):
-            # process one frame of the game
 
             # tell each organism to do its thing
             for org in self.organisms:
                 org.step()
-                self.org_layer.update_energy_label(org)
-                self.org_layer.update_position(org)
+                self.org_layer.update_org(org)
 
             # cull dead organisms and reproduce if it's time
             for org in self.organisms:
@@ -77,31 +77,23 @@ class Game(cocos.layer.Layer):
                 if org.reproduce_time <= 0 :
                     org.reproduce_time = settings.REPRODUCTION_TIME
                     if len(self.organisms) < settings.MAX_ORGANISMS or settings.MAX_ORGANISMS < 0:
-                        new_org = Organism(id=time.time()*1000,color=org.color)
+                        new_org = Organism(id=time.time()*1000,color=org.color,game=self)
                         new_org.brain = org.brain
                         new_org.pos_x = org.pos_x + random.randint(-20,20)
                         new_org.pos_y = org.pos_y + random.randint(-20,20)
                         self.organisms.append(new_org)
                         self.org_layer.add_organism(new_org)
 
-            self.food_layer.update_labels(Map.food_sources)
+
 
             #check for expired food sources
-            for f in Map.food_sources:
+            self.food_layer.sync_with_map(self.map.food_sources)
+            for f in self.map.food_sources:
                 if f["store"] <= 0:
                     self.food_layer.remove_food(f["id"])
-                    self.map.tiles[f["x"]][f["y"]] = Map.EMPTY_TILE
+                    self.map.tiles[f["x"]][f["y"]] = self.map.EMPTY_TILE
                     self.map.food_sources.remove(f)
                     self.map.new_food()
-
-            # add any missing food sources
-            for f in Map.food_sources:
-                found = False
-                for os in self.food_layer.org_sprites:
-                    if os.id == f["id"]:
-                        found = True
-                if not found:
-                    self.food_layer.add_food(f["x"],f["y"])
 
             # reload a new set of organisms if they all die
             if len(self.organisms) <= 0:
