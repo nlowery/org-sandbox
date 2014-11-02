@@ -49,19 +49,19 @@ class ConsoleLayer(cocos.layer.Layer):
         self.commands = ConsoleCommands(game)
 
         for i in range(self.num_lines):
-            self.text_labels.append(cocos.text.Label('',font_name='Courier',font_size=10,anchor_x='left', anchor_y='bottom'))
-        self.text_labels[0].element.text = '>'
+            self.text_labels.append(cocos.text.Label('',font_name='Courier',font_size=settings.CONSOLE_FONT_SIZE,anchor_x='left', anchor_y='bottom'))
+        self.text_labels[0].element.text = settings.CONSOLE_PROMPT
 
         x_pos = 5
         for tl in self.text_labels:
             tl.position = 10,x_pos
             self.add(tl)
-            x_pos += 10
+            x_pos += settings.CONSOLE_FONT_SIZE
 
     def reset_console(self):
         for i in range(self.num_lines):
             self.text_labels[i].element.text = ''
-        self.text_labels[0].element.text = '>'
+        self.text_labels[0].element.text = settings.CONSOLE_PROMPT
 
     def log(self, txt):
         for i in range(self.num_lines-2,0,-1):
@@ -70,12 +70,12 @@ class ConsoleLayer(cocos.layer.Layer):
 
     def on_key_release (self, key, modifiers):
 
-        if key == pyglet.window.key.BACKSPACE and len(self.text_labels[0].element.text) > 1:
+        if key == pyglet.window.key.BACKSPACE and len(self.text_labels[0].element.text) > len(settings.CONSOLE_PROMPT):
             self.text_labels[0].element.text = self.text_labels[0].element.text[:-1]
 
         if key == pyglet.window.key.ENTER:
-            cmd = self.text_labels[0].element.text[1:]
-            self.text_labels[0].element.text = '>'
+            cmd = self.text_labels[0].element.text[len(settings.CONSOLE_PROMPT):]
+            self.text_labels[0].element.text = settings.CONSOLE_PROMPT
             self.execute(cmd)
 
         if key == pyglet.window.key.SPACE:
