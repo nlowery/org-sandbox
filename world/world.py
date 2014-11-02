@@ -4,7 +4,7 @@ import random
 class Map:
 
     EMPTY_TILE = 0
-    FOOD_TILE = 1
+    FOOD_TILE = -10
     TILE_SIZE = 25
     MAX_X = settings.SCREEN_WIDTH/TILE_SIZE
     MAX_Y = settings.SCREEN_HEIGHT/TILE_SIZE

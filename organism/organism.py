@@ -39,8 +39,8 @@ class Organism:
             self.pos_y = 0
 
     def map_position(self):
-        x = (self.pos_x/Map.TILE_SIZE) % Map.MAX_X
-        y = (self.pos_y/Map.TILE_SIZE) % Map.MAX_Y
+        x = (int(self.pos_x)/Map.TILE_SIZE) % Map.MAX_X
+        y = (int(self.pos_y)/Map.TILE_SIZE) % Map.MAX_Y
         return x, y
 
     def scan(self):
@@ -53,46 +53,14 @@ class Organism:
         m = Map.tiles
 
         vals[0] = m[x][y]
-
-        try:
-            vals[1] = m[x-1][y+1]
-        except:
-            pass
-
-        try:
-            vals[2] = m[x][y+1]
-        except:
-            pass
-
-        try:
-            vals[3] = m[x+1][y+1]
-        except:
-            pass
-
-        try:
-            vals[4] = m[x+1][y]
-        except:
-            pass
-
-        try:
-            vals[5] = m[x+1][y-1]
-        except:
-            pass
-
-        try:
-            vals[6] = m[x][y-1]
-        except:
-            pass
-
-        try:
-            vals[7] = m[x-1][y+1]
-        except:
-            pass
-
-        try:
-            vals[8] = m[x-1][y]
-        except:
-            pass
+        vals[1] = m[x-1][min(y+1,Map.size_y)]
+        vals[2] = m[x][min(y+1,Map.size_y)]
+        vals[3] = m[min(x+1,Map.size_x)][min(y+1,Map.size_y)]
+        vals[4] = m[min(x+1,Map.size_x)][y]
+        vals[5] = m[min(x+1,Map.size_x)][y-1]
+        vals[6] = m[x][y-1]
+        vals[7] = m[x-1][min(x+y,Map.size_y)]
+        vals[8] = m[x-1][y]
 
         return vals
 
@@ -120,6 +88,7 @@ class Organism:
     def step(self):
         # process movement, food, age and reproduction
         mx, my = self.brain.process_input(self.scan())
+
         self.move(mx, my)
         self.check_for_food()
         self.energy -= 1
