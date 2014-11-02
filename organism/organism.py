@@ -80,7 +80,7 @@ class Organism:
                     if d <= 1:
                         if self.energy < settings.MAX_ENERGY:
                             self.energy += 10
-                            for fs in Map.food_sources:
+                            for fs in self.game.map.food_sources:
                                 id = "%d-%d" % (i,j)
                                 if fs["id"] == id:
                                     fs["store"] -= 10

@@ -97,8 +97,8 @@ class Game(cocos.layer.Layer):
 
             # reload a new set of organisms if they all die
             if len(self.organisms) <= 0:
-                self.schedule(self.setup)
-                self.unschedule(self.update)
+                self.reset()
+
 
     def start(self):
         cocos.director.director.run(self.main_scene)
