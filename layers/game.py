@@ -47,12 +47,14 @@ class Game(cocos.layer.Layer):
         self.schedule(self.setup)
 
 
-    def setup(self, dt):
-
-        # create and add a new organism
+    def add_organism(self):
         self.organisms.append(Organism(id=int(time.time()*1000),game=self))
         self.org_layer.add_organism(self.organisms[-1])
 
+
+    def setup(self, dt):
+
+        self.add_organism()
         self.map.setup_food()
 
         # if we've created enough organisms, move on from setup

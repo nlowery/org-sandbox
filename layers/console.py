@@ -14,7 +14,11 @@ class ConsoleCommands:
             'info': self.cmd_info,
             'quit': self.cmd_quit,
             'reset': self.cmd_reset,
+            'add_org': self.cmd_add_org,
         }
+
+    def cmd_add_org(self, args):
+        self.game.add_organism()
 
     def cmd_clear(self, args):
         ConsoleLayer().reset_console()
@@ -70,6 +74,8 @@ class ConsoleLayer(cocos.layer.Layer):
 
     def on_key_release (self, key, modifiers):
 
+        #check for and respond to various keys
+
         if key == pyglet.window.key.BACKSPACE and len(self.text_labels[0].element.text) > len(settings.CONSOLE_PROMPT):
             self.text_labels[0].element.text = self.text_labels[0].element.text[:-1]
 
@@ -83,6 +89,13 @@ class ConsoleLayer(cocos.layer.Layer):
 
         if (key >= 97 and key <= 122) or (key >= 48 and key <=58):
             self.text_labels[0].element.text += pyglet.window.key.symbol_string(key).replace('_','')
+
+        if key == pyglet.window.key.MINUS and modifiers == 1:
+            self.text_labels[0].element.text += '_'
+
+        if key == pyglet.window.key.APOSTROPHE:
+            self.text_labels[0].element.text += '"'
+
 
     def execute(self, cmd):
         s = cmd.split(' ')
