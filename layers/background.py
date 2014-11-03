@@ -6,21 +6,31 @@ import settings
 class BackgroundLayer(cocos.layer.Layer):
 
     theme = None
+    background = None
 
     def __init__(self):
         super( BackgroundLayer, self ).__init__()
 
+        self.load_theme()
+
+    def load_theme(self):
         self.theme = Theme(settings.DEFAULT_THEME)
+        self.load()
 
-        s = cocos.sprite.Sprite('graphics/themes/%s/background.jpg' % settings.DEFAULT_THEME)
-        s.position = settings.SCREEN_WIDTH/2,settings.SCREEN_HEIGHT/2
-        s.color = (100,100,200)
-        s.opacity = 200
+    def load(self):
 
-        s.do(Repeat(RotateBy(360, duration=480)))
+        if self.background:
+            self.remove(self.background)
+
+        self.background = cocos.sprite.Sprite('graphics/themes/%s/background.jpg' % settings.DEFAULT_THEME)
+        self.background.position = settings.SCREEN_WIDTH/2,settings.SCREEN_HEIGHT/2
+        self.background.color = (100,100,200)
+        self.background.opacity = 200
+
+        self.background.do(Repeat(RotateBy(360, duration=480)))
 
         if self.theme.background_animated:
-            s.do( Repeat(Liquid( grid=(10,10), duration=15 )))
+            self.background.do( Repeat(Liquid( grid=(10,10), duration=15 )))
 
-        self.add(s)
+        self.add(self.background)
 

@@ -12,6 +12,9 @@ class FoodLayer(cocos.layer.Layer):
 
     def __init__(self):
         super( FoodLayer, self ).__init__()
+        self.load_theme()
+
+    def load_theme(self):
         self.theme = Theme(settings.DEFAULT_THEME)
 
     def add_food(self, x,y):

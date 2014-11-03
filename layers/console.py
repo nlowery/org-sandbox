@@ -12,6 +12,7 @@ class ConsoleCommands:
             '_empty': self.cmd_empty,
             'exit': self.cmd_quit,
             'info': self.cmd_info,
+            'load_theme': self.cmd_load_theme,
             'quit': self.cmd_quit,
             'reset': self.cmd_reset,
             'add_org': self.cmd_add_org,
@@ -25,6 +26,10 @@ class ConsoleCommands:
 
     def cmd_empty(self, args):
         ConsoleLayer().log('')
+
+    def cmd_load_theme(self, args):
+        settings.DEFAULT_THEME = args[0].lower()
+        self.game.reset()
 
     def cmd_info(self, args):
         ConsoleLayer().log('')

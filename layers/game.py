@@ -44,6 +44,8 @@ class Game(cocos.layer.Layer):
         self.org_layer.remove_all()
         self.food_layer.remove_all()
         self.organisms = []
+        self.food_layer.load_theme()
+        self.back_layer.load_theme()
         self.schedule(self.setup)
 
 
