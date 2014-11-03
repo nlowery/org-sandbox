@@ -22,7 +22,7 @@ class Game(cocos.layer.Layer):
 
     def __init__(self):
 
-        cocos.director.director.init(width=settings.SCREEN_WIDTH,height=settings.SCREEN_HEIGHT,fullscreen=settings.FULL_SCREEN)
+        cocos.director.director.init(width=settings.SCREEN_WIDTH,height=settings.SCREEN_HEIGHT,fullscreen=settings.FULL_SCREEN,caption="org-sandbox")
 
         super( Game, self ).__init__()
 
