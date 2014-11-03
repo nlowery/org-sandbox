@@ -72,7 +72,7 @@ class ConsoleLayer(cocos.layer.Layer):
             self.text_labels[i].element.text = self.text_labels[i-1].element.text
         self.text_labels[1].element.text = txt
 
-    def on_key_release (self, key, modifiers):
+    def on_key_press (self, key, modifiers):
 
         #check for and respond to various keys
 
