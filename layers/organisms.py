@@ -1,7 +1,8 @@
 import cocos
 import settings
 import random
-from cocos.actions import Repeat, RotateBy
+import math
+from cocos.actions import RotateTo
 
 class OrganismsLayer(cocos.layer.Layer):
 
@@ -16,7 +17,6 @@ class OrganismsLayer(cocos.layer.Layer):
         dir = 0
         while dir == 0:
             dir = random.randint(-1,1)
-        s.do(Repeat(RotateBy(360*dir, duration=random.randint(3,5))))
 
         s.color = organism.color
         s.position = organism.pos_x, organism.pos_y
@@ -38,9 +38,14 @@ class OrganismsLayer(cocos.layer.Layer):
 
 
     def update_position(self, org):
+        vx = (org.pos_last_x) - (org.pos_x)
+        vy = (org.pos_last_y*-1) - (org.pos_y*-1)
+        r = (math.degrees(math.atan2(vy,vx))) + 90
+
         for o in self.org_sprites:
             if o.id == org.id:
                 o.position = org.pos_x, org.pos_y
+                o.do(RotateTo(r, 0.2))
 
     def update_energy_label(self,org):
         for o in self.org_sprites:

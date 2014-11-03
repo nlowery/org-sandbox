@@ -12,6 +12,8 @@ class Organism:
         self.id = id
         self.pos_x = random.randint(0, settings.SCREEN_WIDTH)
         self.pos_y = random.randint(0, settings.SCREEN_HEIGHT)
+        self.pos_last_x = self.pos_x
+        self.pos_last_y = self.pos_y
         self.energy = settings.STARTING_ENERGY
         self.age = 0
         self.reproduce_time = settings.REPRODUCTION_TIME
@@ -23,6 +25,9 @@ class Organism:
 
 
     def move(self,x,y):
+
+        self.pos_last_x = self.pos_x
+        self.pos_last_y = self.pos_y
 
         self.pos_x += x
         self.pos_y += y
