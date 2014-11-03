@@ -11,7 +11,7 @@ class FoodLayer(cocos.layer.Layer):
         super( FoodLayer, self ).__init__()
 
     def add_food(self, x,y):
-        s = cocos.sprite.Sprite('graphics/food.png')
+        s = cocos.sprite.Sprite('graphics/themes/%s/food.png' % settings.DEFAULT_THEME)
         s.position = x * 25,  y * 25
         s.color = (200,200,200)
 

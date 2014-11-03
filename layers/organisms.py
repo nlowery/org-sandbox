@@ -11,7 +11,7 @@ class OrganismsLayer(cocos.layer.Layer):
         super( OrganismsLayer, self ).__init__()
 
     def add_organism(self, organism):
-        s = cocos.sprite.Sprite('graphics/organism_red.png')
+        s = cocos.sprite.Sprite('graphics/themes/%s/organism.png' % settings.DEFAULT_THEME)
 
         dir = 0
         while dir == 0:
