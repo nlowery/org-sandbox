@@ -1,19 +1,26 @@
+from cocos.actions import Repeat, RotateBy
+from utilities.themes import Theme
 import settings
 import random
 import cocos
-from cocos.actions import Repeat, RotateBy
+
 
 class FoodLayer(cocos.layer.Layer):
 
     org_sprites = []
+    theme = None
 
     def __init__(self):
         super( FoodLayer, self ).__init__()
+        self.theme = Theme(settings.DEFAULT_THEME)
 
     def add_food(self, x,y):
+
+
         s = cocos.sprite.Sprite('graphics/themes/%s/food.png' % settings.DEFAULT_THEME)
         s.position = x * 25,  y * 25
         s.color = (200,200,200)
+        s.scale = self.theme.food_scale
 
         dir = 0
         while dir == 0:

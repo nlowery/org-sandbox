@@ -1,3 +1,4 @@
+from utilities.themes import Theme
 import cocos
 import settings
 import random
@@ -7,16 +8,19 @@ from cocos.actions import RotateTo
 class OrganismsLayer(cocos.layer.Layer):
 
     org_sprites = []
+    theme = None
 
     def __init__(self):
         super( OrganismsLayer, self ).__init__()
 
     def add_organism(self, organism):
+        self.theme = Theme(settings.DEFAULT_THEME)
         s = cocos.sprite.Sprite('graphics/themes/%s/organism.png' % settings.DEFAULT_THEME)
 
         s.color = organism.color
         s.position = organism.pos_x, organism.pos_y
         s.id = organism.id
+        s.scale = self.theme.organism_scale
 
         s.energy_label = cocos.text.Label('0',font_name='Courier',font_size=10,anchor_x='left', anchor_y='bottom', color=(255,0,0,255))
         s.energy_label.position = 15,0
