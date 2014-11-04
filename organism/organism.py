@@ -16,7 +16,7 @@ class Organism:
         self.pos_last_y = self.pos_y
         self.energy = settings.STARTING_ENERGY
         self.age = 0
-        self.reproduce_time = settings.REPRODUCTION_TIME
+        self.reproduce_time = settings.REPRODUCTION_TIME * (random.randint(75, 125) / 100.0)
         self.distance_from_food = 0
         self.color = color or (random.randint(150,255),random.randint(150,255),random.randint(150,255))
 
@@ -58,15 +58,15 @@ class Organism:
         x, y = self.map_position()
         m = self.game.map.tiles
 
-        vals[0] = m[x][y]
-        vals[1] = m[x-1][min(y+1,Map.size_y)]
-        vals[2] = m[x][min(y+1,Map.size_y)]
-        vals[3] = m[min(x+1,Map.size_x)][min(y+1,Map.size_y)]
-        vals[4] = m[min(x+1,Map.size_x)][y]
-        vals[5] = m[min(x+1,Map.size_x)][y-1]
-        vals[6] = m[x][y-1]
-        vals[7] = m[x-1][min(x+y,Map.size_y)]
-        vals[8] = m[x-1][y]
+        vals[0] = self.game.map.get_tile(x,  y)
+        vals[1] = self.game.map.get_tile(x-1,y+1)
+        vals[2] = self.game.map.get_tile(x,  y+1)
+        vals[3] = self.game.map.get_tile(x+1,y+1)
+        vals[4] = self.game.map.get_tile(x+1,y)
+        vals[5] = self.game.map.get_tile(x+1,y-1)
+        vals[6] = self.game.map.get_tile(x  ,y-1)
+        vals[7] = self.game.map.get_tile(x-1,y-1)
+        vals[8] = self.game.map.get_tile(x-1,y)
 
         return vals
 
@@ -89,7 +89,6 @@ class Organism:
                                 id = "%d-%d" % (i,j)
                                 if fs["id"] == id:
                                     fs["store"] -= 10
-
 
     def step(self):
         # process movement, food, age and reproduction

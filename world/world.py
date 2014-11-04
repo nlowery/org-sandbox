@@ -18,6 +18,17 @@ class Map:
         self.size_x = settings.SCREEN_WIDTH/self.TILE_SIZE
         self.size_y = settings.SCREEN_HEIGHT/self.TILE_SIZE
 
+    def get_tile(self,x,y):
+        if x > self.MAX_X-1:
+            x = 0
+        if x < 0:
+            x = self.MAX_X-1
+        if y > self.MAX_Y-1:
+            y = 0
+        if y < 0:
+            y = self.MAX_Y-1
+        return self.tiles[x][y]
+
     def setup_food(self):
         self.tiles = []
         self.food_sources = []

@@ -85,10 +85,10 @@ class Game(cocos.layer.Layer):
                         new_org.brain = org.brain
                         new_org.pos_x = org.pos_x + random.randint(-20,20)
                         new_org.pos_y = org.pos_y + random.randint(-20,20)
+                        new_org.pos_last_x = org.pos_last_x
+                        new_org.pos_last_y = org.pos_last_y
                         self.organisms.append(new_org)
                         self.org_layer.add_organism(new_org)
-
-
 
             #check for expired food sources
             self.food_layer.sync_with_map(self.map.food_sources)

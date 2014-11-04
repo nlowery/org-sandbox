@@ -31,6 +31,8 @@ class OrganismsLayer(cocos.layer.Layer):
         self.org_sprites.append(s)
         self.add(s)
 
+        self.first_rotation = True
+
     def update_org(self, org):
         self.update_position(org)
         self.update_energy_label(org)
