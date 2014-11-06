@@ -1,4 +1,3 @@
-from layers.console import ConsoleLayer
 from layers.organisms import OrganismsLayer
 from layers.food import FoodLayer
 from layers.background import BackgroundLayer
@@ -9,6 +8,7 @@ import settings
 import cocos
 import time
 import random
+import pygame
 
 class Game(cocos.layer.Layer):
 
@@ -23,6 +23,11 @@ class Game(cocos.layer.Layer):
     def __init__(self):
 
         cocos.director.director.init(width=settings.SCREEN_WIDTH,height=settings.SCREEN_HEIGHT,fullscreen=settings.FULL_SCREEN,caption="org-sandbox")
+
+        # initialize background music
+        pygame.mixer.init()
+        pygame.mixer.music.load("audio/starling.wav")
+        pygame.mixer.music.play(-1,0)
 
         super( Game, self ).__init__()
 

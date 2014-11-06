@@ -21,7 +21,7 @@ class FoodLayer(cocos.layer.Layer):
 
 
         s = cocos.sprite.Sprite('graphics/themes/%s/food.png' % settings.DEFAULT_THEME)
-        s.position = x * 25,  y * 25
+        s.position = (x * 25)+12,  (y * 25)+12
         s.color = (200,200,200)
         s.scale = self.theme.food_scale
 
