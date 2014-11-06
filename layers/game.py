@@ -107,7 +107,7 @@ class Game(cocos.layer.Layer):
     def start(self):
         # initialize background music
         pygame.mixer.init()
-        pygame.mixer.music.load("audio/starling.wav")
+        pygame.mixer.music.load("audio/music.wav")
         pygame.mixer.music.play(-1,0)
 
         cocos.director.director.run(self.main_scene)
