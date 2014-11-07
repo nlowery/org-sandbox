@@ -1,7 +1,7 @@
 org-sandbox
 ===========
 
-**org-sandbox** is an initial stab at creating a sandbox filled with organisms and energy sources. Organisms are each initialized with a random neural network that is continuously fed with input from the environment. Output from the neural network determines how the organism navigates its environment.
+**org-sandbox** is an attempt at creating a sandbox filled with organisms and energy sources. Organisms are each initialized with a random neural network that is continuously fed with input from the environment. Output from the neural network determines how the organism navigates its environment.
 
 Organisms that maintain contact with energy sources can survive and replicate themselves. Those that starve will deplete their energy reserves and die.
 
