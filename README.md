@@ -1,5 +1,6 @@
 org-sandbox
 ===========
+[![Code Climate](https://codeclimate.com/github/nlowery/org-sandbox/badges/gpa.svg)](https://codeclimate.com/github/nlowery/org-sandbox)
 
 **org-sandbox** is an attempt at creating a sandbox filled with organisms and energy sources. Organisms are each initialized with a random neural network that is continuously fed with input from the environment. Output from the neural network determines how the organism navigates its environment.
 
