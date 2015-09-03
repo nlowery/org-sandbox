@@ -2,7 +2,7 @@ from world import Map
 import unittest
 import settings
 
-class OrganismTests(unittest.TestCase):
+class WorldTests(unittest.TestCase):
 
     def setUp(self):
         self.map = Map()
