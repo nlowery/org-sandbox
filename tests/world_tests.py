@@ -1,4 +1,4 @@
-from world import Map
+from world.world import Map
 import unittest
 import settings
 

@@ -1,4 +1,4 @@
-from organism import Organism
+from organism.organism import Organism
 import unittest
 import settings
 
