@@ -13,6 +13,6 @@ python:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get build-dep -y python-numpy python-scipy 
-install: "pip install -r requirements.txt"
+install: "pip install -r requirements_travis.txt"
 # command to run tests
 script: nosetests
