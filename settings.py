@@ -1,3 +1,4 @@
+import os
 
 # Graphics
 SCREEN_WIDTH = 720
@@ -24,3 +25,6 @@ STARTING_FOOD_ENERGY = 10000
 CONSOLE_PROMPT = '>>>'
 CONSOLE_FONT_SIZE = 10
 NUMBER_OF_CONSOLE_LINES = SCREEN_HEIGHT/CONSOLE_FONT_SIZE
+
+# App root
+APP_ROOT_PATH, APP_ROOT_FILE = os.path.split(os.path.abspath(__file__))
