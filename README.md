@@ -2,7 +2,6 @@ org-sandbox
 ===========
 [![Code Climate](https://codeclimate.com/github/nlowery/org-sandbox/badges/gpa.svg)](https://codeclimate.com/github/nlowery/org-sandbox)
 [![Travis CI](https://api.travis-ci.org/nlowery/org-sandbox.svg)](https://travis-ci.org/nlowery/org-sandbox)
-[![Circle CI](https://circleci.com/gh/nlowery/org-sandbox.svg?style=svg)](https://circleci.com/gh/nlowery/org-sandbox)
 
 **org-sandbox** is an attempt at creating a sandbox environment filled with organisms and energy sources. Organisms are each initialized with a random neural network that is continuously fed with input from their current location within the sandbox. Output from each individual's neural network determines how the organism responds and navigates.
 
