@@ -2,6 +2,7 @@ from cocos.actions import Repeat, RotateBy, Liquid
 from utilities.themes import Theme
 import cocos
 import settings
+import pyglet
 
 class BackgroundLayer(cocos.layer.Layer):
 
@@ -9,7 +10,7 @@ class BackgroundLayer(cocos.layer.Layer):
     background = None
 
     def __init__(self):
-        super( BackgroundLayer, self ).__init__()
+        super(BackgroundLayer, self ).__init__()
 
         self.load_theme()
 
@@ -22,7 +23,7 @@ class BackgroundLayer(cocos.layer.Layer):
         if self.background:
             self.remove(self.background)
 
-        self.background = cocos.sprite.Sprite('graphics/themes/%s/background.jpg' % settings.DEFAULT_THEME)
+        self.background = cocos.sprite.Sprite('background.jpg')
         self.background.position = settings.SCREEN_WIDTH/2,settings.SCREEN_HEIGHT/2
         self.background.color = (100,100,200)
         self.background.opacity = 200

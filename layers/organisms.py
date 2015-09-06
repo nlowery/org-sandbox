@@ -15,7 +15,7 @@ class OrganismsLayer(cocos.layer.Layer):
 
     def add_organism(self, organism):
         self.theme = Theme(settings.DEFAULT_THEME)
-        s = cocos.sprite.Sprite('graphics/themes/%s/organism.png' % settings.DEFAULT_THEME)
+        s = cocos.sprite.Sprite('organism.png')
 
         s.color = organism.color
         s.position = organism.pos_x, organism.pos_y

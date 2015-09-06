@@ -9,22 +9,26 @@ import cocos
 import time
 import random
 import pygame
+import pyglet
 
 class Game(cocos.layer.Layer):
 
     main_scene = None
-    console    = None
-    org_layer  = None
+    console = None
+    org_layer = None
     food_layer = None
     back_layer = None
-    map        = None
-    organisms  = []
+    map = None
+    organisms = []
 
     def __init__(self):
 
         cocos.director.director.init(width=settings.SCREEN_WIDTH,height=settings.SCREEN_HEIGHT,fullscreen=settings.FULL_SCREEN,caption="org-sandbox")
+        # reindex resources
+        pyglet.resource.path = ["%s/graphics/themes/%s/" % (settings.APP_ROOT_PATH, settings.DEFAULT_THEME)]
+        pyglet.resource.reindex()
 
-        super( Game, self ).__init__()
+        super(Game, self).__init__()
 
         self.map = Map()
         self.back_layer = BackgroundLayer()
