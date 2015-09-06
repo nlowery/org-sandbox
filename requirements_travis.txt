@@ -1,0 +1,3 @@
+PyBrain
+cocos2d
+nose
