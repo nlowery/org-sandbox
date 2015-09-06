@@ -11,7 +11,7 @@ python:
   - "nightly"
 # command to install dependencies
 before_install:
-  - sudo apt-get install -y python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+  - sudo apt-get install -y python-numpy python-scipy 
 install: "pip install -r requirements.txt"
 # command to run tests
 script: nosetests
