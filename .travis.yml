@@ -15,7 +15,6 @@ before_install:
 # Install packages
 install:
   - conda install --yes python=$TRAVIS_PYTHON_VERSION atlas numpy scipy matplotlib nose dateutil pandas statsmodels
-  - python setup.py install
-install: "pip install -r requirements_travis.txt"
+  - pip install -r requirements_travis.txt
 # command to run tests
 script: nosetests
