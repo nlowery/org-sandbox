@@ -10,7 +10,7 @@ python:
   - "3.5-dev"
   - "nightly"
 # command to install dependencies
-before_intall:
+before_install:
   - sudo apt-get install -y python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
 install: "pip install -r requirements.txt"
 # command to run tests
